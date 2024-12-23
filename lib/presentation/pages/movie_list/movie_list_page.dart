@@ -6,6 +6,9 @@ class MovieListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(const String.fromEnvironment("TEST", defaultValue: "bad")),
+      ),
       body: Center(
         child: Text("MovieListPage"),
       ),
