@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_movie_app/data/data_source/movie_data_source.dart';
 import 'package:flutter_movie_app/data/dto/movie_detail_dto.dart';
 import 'package:flutter_movie_app/data/dto/movie_response_dto.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class MovieDataSourceImpl implements MovieDataSource {
   final Dio _client;
