@@ -5,14 +5,10 @@ import 'package:flutter_movie_app/data/dto/movie_response_dto.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class MovieDataSourceImpl implements MovieDataSource {
-  final Dio _client = Dio(BaseOptions(
-    baseUrl: "https://api.themoviedb.org/3/movie/",
-    headers: {
-      "Authorization":
-          "Bearer ${const String.fromEnvironment("TMDB_ACCESS_TOKEN")}"
-    },
-  ))
-    ..interceptors.add(PrettyDioLogger());
+  final Dio _client;
+
+  // Dio를 주입받는 생성자 추가
+  MovieDataSourceImpl(this._client);
 
   @override
   Future<MovieDetailDto?> fetchMovieDetail(int id) async {
