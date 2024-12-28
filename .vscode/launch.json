@@ -5,7 +5,7 @@
       "name": "dev",
       "request": "launch",
       "type": "dart",
-      "toolArgs": ["--dart-define-from-file", "config.json"]
+      "toolArgs": ["--dart-define-from-file", "./.env"]
     }
   ]
 }
