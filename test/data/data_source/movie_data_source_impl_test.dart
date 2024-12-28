@@ -5,7 +5,7 @@ import 'package:flutter_movie_app/data/dto/movie_response_dto.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'mock_data.dart';
+import '../../core/mock_data.dart';
 
 class MockDio extends Mock implements Dio {}
 
