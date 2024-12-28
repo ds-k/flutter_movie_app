@@ -1,10 +1,10 @@
+import 'package:flutter_movie_app/data/data_source/movie_data_source_impl.dart';
 import 'package:flutter_movie_app/data/dto/movie_detail_dto.dart';
 import 'package:flutter_movie_app/data/dto/movie_response_dto.dart';
-import 'package:flutter_movie_app/data/data_source/movie_data_source.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-class MockMovieDataSource extends Mock implements MovieDataSource {}
+class MockMovieDataSource extends Mock implements MovieDataSourceImpl {}
 
 void main() {
   late MockMovieDataSource mockDataSource;
@@ -89,8 +89,9 @@ void main() {
     voteAverage: 8.5,
     voteCount: 1000,
   );
-  group('MovieDataSource Tests', () {
-    test('MovieDataSource.fetchNowPlayingMovies : 올바른 타입을 반환하는지 테스트', () async {
+  group('MovieDataSourceImpl Tests', () {
+    test('MovieDataSourceImpl.fetchNowPlayingMovies : 올바른 타입을 반환하는지 테스트',
+        () async {
       when(() => mockDataSource.fetchNowPlayingMovies())
           .thenAnswer((_) async => mockMovieResponseDto);
 
@@ -102,7 +103,8 @@ void main() {
       expect(result.results.first.title, "Test Movie 1");
     });
 
-    test('MovieDataSource.fetchPopularMovies : 올바른 타입을 반환하는지 테스트', () async {
+    test('MovieDataSourceImpl.fetchPopularMovies : 올바른 타입을 반환하는지 테스트',
+        () async {
       when(() => mockDataSource.fetchPopularMovies())
           .thenAnswer((_) async => mockMovieResponseDto);
 
@@ -113,7 +115,8 @@ void main() {
       expect(result!.results.first.id, 1);
     });
 
-    test('MovieDataSource.fetchTopRatedMovies : 올바른 타입을 반환하는지 테스트', () async {
+    test('MovieDataSourceImpl.fetchTopRatedMovies : 올바른 타입을 반환하는지 테스트',
+        () async {
       when(() => mockDataSource.fetchTopRatedMovies())
           .thenAnswer((_) async => mockMovieResponseDto);
 
@@ -124,7 +127,8 @@ void main() {
       expect(result!.results.first.voteAverage, 8.5);
     });
 
-    test('MovieDataSource.fetchUpcomingMovies : 올바른 타입을 반환하는지 테스트', () async {
+    test('MovieDataSourceImpl.fetchUpcomingMovies : 올바른 타입을 반환하는지 테스트',
+        () async {
       when(() => mockDataSource.fetchUpcomingMovies())
           .thenAnswer((_) async => mockMovieResponseDto);
 
@@ -135,7 +139,7 @@ void main() {
       expect(result!.totalResults, 1);
     });
 
-    test('MovieDataSource.fetchMovieDetail : 올바른 타입을 반환하는지 테스트', () async {
+    test('MovieDataSourceImpl.fetchMovieDetail : 올바른 타입을 반환하는지 테스트', () async {
       when(() => mockDataSource.fetchMovieDetail(1))
           .thenAnswer((_) async => mockMovieDetailDto);
 
