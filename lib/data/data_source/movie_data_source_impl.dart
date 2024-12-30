@@ -19,7 +19,7 @@ class MovieDataSourceImpl implements MovieDataSource {
         return MovieDetailDto.fromJson(response.data);
       }
       return null;
-    } on DioException catch (e) {
+    } catch (e) {
       print(e);
       return null;
     }
@@ -40,8 +40,7 @@ class MovieDataSourceImpl implements MovieDataSource {
         return MovieResponseDto.fromJson(response.data);
       }
       return null;
-    } on DioException catch (e) {
-      print(e);
+    } catch (e) {
       return null;
     }
   }
@@ -56,12 +55,13 @@ class MovieDataSourceImpl implements MovieDataSource {
           "page": "1",
         },
       );
+      print(response.statusCode);
       if (response.statusCode == 200) {
         return MovieResponseDto.fromJson(response.data);
       }
       return null;
-    } on DioException catch (e) {
-      print(e);
+    } catch (e, stac) {
+      print((e, stac));
       return null;
     }
   }
@@ -80,7 +80,7 @@ class MovieDataSourceImpl implements MovieDataSource {
         return MovieResponseDto.fromJson(response.data);
       }
       return null;
-    } on DioException catch (e) {
+    } catch (e) {
       print(e);
       return null;
     }
@@ -100,7 +100,7 @@ class MovieDataSourceImpl implements MovieDataSource {
         return MovieResponseDto.fromJson(response.data);
       }
       return null;
-    } on DioException catch (e) {
+    } catch (e) {
       print(e);
       return null;
     }
