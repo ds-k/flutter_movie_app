@@ -25,28 +25,23 @@ class MovieListViewModel extends AsyncNotifier<MovieListState> {
   }
 
   Future<MovieListState> fetchAllMovieList() async {
-    try {
-      final nowPlayingMoviesList =
-          await ref.read(fetchNowPlayingMoviesUsecaseProvider).execute();
+    final nowPlayingMoviesList =
+        await ref.read(fetchNowPlayingMoviesUsecaseProvider).execute();
 
-      final popularMoviesList =
-          await ref.read(fetchPopularMoviesUsecaseProvider).execute();
+    final popularMoviesList =
+        await ref.read(fetchPopularMoviesUsecaseProvider).execute();
 
-      final topRatedMoviesList =
-          await ref.read(fetchTopRatedMoviesUsecaseProvider).execute();
+    final topRatedMoviesList =
+        await ref.read(fetchTopRatedMoviesUsecaseProvider).execute();
 
-      final upcomingMoviesList =
-          await ref.read(fetchUpcomingMoviesUsecaseProvider).execute();
+    final upcomingMoviesList =
+        await ref.read(fetchUpcomingMoviesUsecaseProvider).execute();
 
-      return MovieListState(
-          nowPlayingMoviesList: nowPlayingMoviesList,
-          popularMoviesList: popularMoviesList,
-          topRatedMoviesList: topRatedMoviesList,
-          upcomingMoviesList: upcomingMoviesList);
-    } catch (e, stackTrace) {
-      state = AsyncError(e, stackTrace);
-      return MovieListState();
-    }
+    return MovieListState(
+        nowPlayingMoviesList: nowPlayingMoviesList,
+        popularMoviesList: popularMoviesList,
+        topRatedMoviesList: topRatedMoviesList,
+        upcomingMoviesList: upcomingMoviesList);
   }
 }
 
