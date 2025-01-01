@@ -5,11 +5,13 @@ class ShimmerLoadingImage extends StatelessWidget {
   final String imageUrl;
   final double width;
   final double height;
+  final String heroTag;
 
   const ShimmerLoadingImage({
     required this.imageUrl,
     required this.width,
     required this.height,
+    required this.heroTag,
     super.key,
   });
 
@@ -19,25 +21,34 @@ class ShimmerLoadingImage extends StatelessWidget {
       future: _precacheImage(context, imageUrl),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.network(
-              imageUrl,
-              width: width,
-              height: height,
-              fit: BoxFit.cover,
+          return Hero(
+            tag: heroTag,
+            child: Container(
+              decoration: BoxDecoration(color: Colors.black),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  imageUrl,
+                  width: width,
+                  height: height,
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           );
         } else {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Shimmer.fromColors(
-              baseColor: Colors.grey[800]!,
-              highlightColor: Colors.grey[700]!,
-              child: Container(
-                width: width,
-                height: height,
-                color: Colors.grey,
+          return Container(
+            decoration: BoxDecoration(color: Colors.black),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Shimmer.fromColors(
+                baseColor: Colors.grey[800]!,
+                highlightColor: Colors.grey[700]!,
+                child: Container(
+                  width: width,
+                  height: height,
+                  color: Colors.grey,
+                ),
               ),
             ),
           );

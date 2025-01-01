@@ -46,19 +46,22 @@ class MovieListPage extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final category = categories[index];
                 final movies = category['movies'] as List;
+                final categoryTitle = category['title'] as String;
 
                 if (index == 0) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CategoryTitle(title: category['title'] as String),
+                      CategoryTitle(title: categoryTitle),
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  MovieDetailPage(movie: movies[0]),
+                              builder: (context) => MovieDetailPage(
+                                movie: movies[0],
+                                categoryTitle: categoryTitle,
+                              ),
                             ),
                           );
                         },
@@ -67,6 +70,7 @@ class MovieListPage extends ConsumerWidget {
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(8.0),
                               child: ShimmerLoadingImage(
+                                heroTag: "$categoryTitle - ${movies[0].id}",
                                 imageUrl:
                                     "https://image.tmdb.org/t/p/w500${movies[0].posterPath}",
                                 width: double.infinity,
@@ -80,8 +84,9 @@ class MovieListPage extends ConsumerWidget {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CategoryTitle(title: category['title'] as String),
+                      CategoryTitle(title: categoryTitle),
                       MovieList(
+                        categoryTitle: categoryTitle,
                         movies: movies,
                         isPopularList: true,
                       ),
@@ -91,8 +96,8 @@ class MovieListPage extends ConsumerWidget {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CategoryTitle(title: category['title'] as String),
-                      MovieList(movies: movies),
+                      CategoryTitle(title: categoryTitle),
+                      MovieList(movies: movies, categoryTitle: categoryTitle),
                     ],
                   );
                 }

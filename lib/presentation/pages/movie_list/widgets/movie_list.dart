@@ -5,10 +5,12 @@ import 'package:flutter_movie_app/presentation/widgets/shimmer_loading_image.dar
 class MovieList extends StatelessWidget {
   final List movies;
   final bool isPopularList;
+  final String categoryTitle;
 
   const MovieList({
     required this.movies,
     this.isPopularList = false,
+    required this.categoryTitle,
     super.key,
   });
 
@@ -26,14 +28,19 @@ class MovieList extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: () {
+                  print("$categoryTitle - ${movie.id} // 보내는쪽");
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MovieDetailPage(movie: movie),
+                      builder: (context) => MovieDetailPage(
+                        movie: movie,
+                        categoryTitle: categoryTitle,
+                      ),
                     ),
                   );
                 },
                 child: ShimmerLoadingImage(
+                  heroTag: "$categoryTitle - ${movie.id}",
                   imageUrl:
                       "http://image.tmdb.org/t/p/w500/${movie.posterPath}",
                   width: 120,
@@ -50,7 +57,10 @@ class MovieList extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MovieDetailPage(movie: movie),
+                      builder: (context) => MovieDetailPage(
+                        movie: movie,
+                        categoryTitle: categoryTitle,
+                      ),
                     ),
                   );
                 },
@@ -58,6 +68,7 @@ class MovieList extends StatelessWidget {
                   clipBehavior: Clip.none,
                   children: [
                     ShimmerLoadingImage(
+                      heroTag: "$categoryTitle - ${movie.id}",
                       imageUrl:
                           "http://image.tmdb.org/t/p/w500/${movie.posterPath}",
                       width: 120,
