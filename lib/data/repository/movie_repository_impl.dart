@@ -24,6 +24,7 @@ class MovieRepositoryImpl implements MovieRepository {
             genres: result.genres.map((genre) => genre.name).toList(),
             productionCompanyLogos: result.productionCompanies
                 .map((company) => company.logoPath ?? "")
+                .where((path) => path != "")
                 .toList(),
             popularity: result.popularity,
             revenue: result.revenue,
