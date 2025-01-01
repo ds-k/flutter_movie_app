@@ -39,12 +39,24 @@ class MovieList extends StatelessWidget {
                     ),
                   );
                 },
-                child: ShimmerLoadingImage(
-                  heroTag: "$categoryTitle - ${movie.id}",
-                  imageUrl:
+                // child: ShimmerLoadingImage(
+                //   heroTag: "$categoryTitle - ${movie.id}",
+                //   imageUrl:
+                //       "http://image.tmdb.org/t/p/w500/${movie.posterPath}",
+                //   width: 120,
+                //   height: 180,
+                // ),
+                child: Hero(
+                  tag: "$categoryTitle - ${movie.id}",
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
                       "http://image.tmdb.org/t/p/w500/${movie.posterPath}",
-                  width: 120,
-                  height: 180,
+                      width: 120,
+                      height: 180,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
             );
@@ -67,12 +79,24 @@ class MovieList extends StatelessWidget {
                 child: Stack(
                   clipBehavior: Clip.none,
                   children: [
-                    ShimmerLoadingImage(
-                      heroTag: "$categoryTitle - ${movie.id}",
-                      imageUrl:
+                    // ShimmerLoadingImage(
+                    //   heroTag: "$categoryTitle - ${movie.id}",
+                    //   imageUrl:
+                    //       "http://image.tmdb.org/t/p/w500/${movie.posterPath}",
+                    //   width: 120,
+                    //   height: 180,
+                    // ),
+                    Hero(
+                      tag: "$categoryTitle - ${movie.id}",
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.network(
                           "http://image.tmdb.org/t/p/w500/${movie.posterPath}",
-                      width: 120,
-                      height: 180,
+                          width: 120,
+                          height: 180,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                     Positioned(
                         bottom: -20,

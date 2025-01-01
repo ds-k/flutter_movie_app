@@ -65,17 +65,30 @@ class MovieListPage extends ConsumerWidget {
                             ),
                           );
                         },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        // child: Padding(
+                        //   padding: const EdgeInsets.all(8.0),
+                        //   child: ClipRRect(
+                        //       borderRadius: BorderRadius.circular(8.0),
+                        //       child: ShimmerLoadingImage(
+                        //         heroTag: "$categoryTitle - ${movies[0].id}",
+                        //         imageUrl:
+                        //             "https://image.tmdb.org/t/p/w500${movies[0].posterPath}",
+                        //         width: double.infinity,
+                        //         height: 480,
+                        //       )),
+
+                        // ),
+                        child: Hero(
+                          tag: "$categoryTitle - ${movies[0].id}",
                           child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: ShimmerLoadingImage(
-                                heroTag: "$categoryTitle - ${movies[0].id}",
-                                imageUrl:
-                                    "https://image.tmdb.org/t/p/w500${movies[0].posterPath}",
-                                width: double.infinity,
-                                height: 480,
-                              )),
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.network(
+                              "http://image.tmdb.org/t/p/w500/${movies[0].posterPath}",
+                              width: double.infinity,
+                              height: 480,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                       ),
                     ],
