@@ -23,24 +23,12 @@ class MovieDetailPage extends ConsumerWidget {
             return SingleChildScrollView(
               child: Column(
                 children: [
-                  // ShimmerLoadingImage(
-                  //   heroTag: "$categoryTitle - ${movie.id}",
-                  //   imageUrl:
-                  //       "https://image.tmdb.org/t/p/w500${movie.posterPath}",
-                  //   width: double.infinity,
-                  //   height: 600,
-                  // ),
-                  Hero(
-                    tag: "$categoryTitle - ${movie.id}",
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.network(
-                        "http://image.tmdb.org/t/p/w500/${movie.posterPath}",
-                        width: double.infinity,
-                        height: 600,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                  ShimmerLoadingImage(
+                    heroTag: "$categoryTitle - ${movie.id}",
+                    imageUrl:
+                        "https://image.tmdb.org/t/p/w500${movie.posterPath}",
+                    width: double.infinity,
+                    height: 600,
                   ),
                   Text(movieDetail.title),
                   Text(movieDetail.overview),
