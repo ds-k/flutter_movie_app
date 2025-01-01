@@ -39,12 +39,14 @@ class MovieList extends StatelessWidget {
                     ),
                   );
                 },
-                child: ShimmerLoadingImage(
-                  heroTag: "$categoryTitle - ${movie.id}",
-                  imageUrl:
-                      "http://image.tmdb.org/t/p/w500/${movie.posterPath}",
-                  width: 120,
-                  height: 180,
+                child: Hero(
+                  tag: "$categoryTitle - ${movie.id}",
+                  child: ShimmerLoadingImage(
+                    imageUrl:
+                        "http://image.tmdb.org/t/p/w500/${movie.posterPath}",
+                    width: 120,
+                    height: 180,
+                  ),
                 ),
               ),
             );
@@ -67,12 +69,14 @@ class MovieList extends StatelessWidget {
                 child: Stack(
                   clipBehavior: Clip.none,
                   children: [
-                    ShimmerLoadingImage(
-                      heroTag: "$categoryTitle - ${movie.id}",
-                      imageUrl:
-                          "http://image.tmdb.org/t/p/w500/${movie.posterPath}",
-                      width: 120,
-                      height: 180,
+                    Hero(
+                      tag: "$categoryTitle - ${movie.id}",
+                      child: ShimmerLoadingImage(
+                        imageUrl:
+                            "http://image.tmdb.org/t/p/w500/${movie.posterPath}",
+                        width: 120,
+                        height: 180,
+                      ),
                     ),
                     Positioned(
                         bottom: -20,

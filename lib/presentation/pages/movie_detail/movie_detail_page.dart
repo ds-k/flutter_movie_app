@@ -26,12 +26,14 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
       body: SafeArea(
         child: Column(
           children: [
-            ShimmerLoadingImage(
-              heroTag: "${widget.categoryTitle} - ${widget.movie.id}",
-              imageUrl:
-                  "https://image.tmdb.org/t/p/w500${widget.movie.posterPath}",
-              width: double.infinity,
-              height: 600,
+            Hero(
+              tag: "${widget.categoryTitle} - ${widget.movie.id}",
+              child: ShimmerLoadingImage(
+                imageUrl:
+                    "https://image.tmdb.org/t/p/w500${widget.movie.posterPath}",
+                width: double.infinity,
+                height: 600,
+              ),
             ),
             Consumer(
               builder: (context, ref, child) {
