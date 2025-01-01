@@ -21,28 +21,23 @@ class MovieListPage extends ConsumerWidget {
             final categories = [
               {
                 'title': "가장 인기있는",
-                'movies': movieListState.popularMoviesList ?? [],
-                "prefix": "most_popular",
+                'movies': movieListState.popularMoviesList ?? []
               },
               {
                 'title': "현재 상영중",
-                'movies': movieListState.nowPlayingMoviesList ?? [],
-                "prefix": "now_playing",
+                'movies': movieListState.nowPlayingMoviesList ?? []
               },
               {
                 'title': "인기 순",
-                'movies': movieListState.popularMoviesList ?? [],
-                "prefix": "popular",
+                'movies': movieListState.popularMoviesList ?? []
               },
               {
                 'title': "평점 높은 순",
-                'movies': movieListState.topRatedMoviesList ?? [],
-                "prefix": "top_rated",
+                'movies': movieListState.topRatedMoviesList ?? []
               },
               {
                 'title': "개봉 예정",
-                'movies': movieListState.upcomingMoviesList ?? [],
-                "prefix": " upcoming",
+                'movies': movieListState.upcomingMoviesList ?? []
               },
             ];
 
@@ -51,7 +46,7 @@ class MovieListPage extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final category = categories[index];
                 final movies = category['movies'] as List;
-                final categoryTitle = category['prefix'] as String;
+                final categoryTitle = category['title'] as String;
 
                 if (index == 0) {
                   return Column(
