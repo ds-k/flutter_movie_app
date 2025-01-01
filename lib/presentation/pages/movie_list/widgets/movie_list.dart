@@ -28,7 +28,6 @@ class MovieList extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: () {
-                  print("$categoryTitle - ${movie.id} // 보내는쪽");
                   Navigator.push(
                     context,
                     MaterialPageRoute(
