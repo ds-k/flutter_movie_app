@@ -28,19 +28,17 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
           children: [
             Hero(
               tag: "${widget.categoryTitle} - ${widget.movie.id}",
-              child: ShimmerLoadingImage(
-                imageUrl:
-                    "https://image.tmdb.org/t/p/w500${widget.movie.posterPath}",
+              child: Image.network(
+                "https://image.tmdb.org/t/p/w500${widget.movie.posterPath}",
                 width: double.infinity,
                 height: 600,
+                fit: BoxFit.cover,
               ),
             ),
             Consumer(
               builder: (context, ref, child) {
                 final movieDetail =
                     ref.watch(movieDetailViewModelProvider(widget.movie.id));
-
-                print("${widget.categoryTitle} - ${widget.movie.id} // 받는 쪽");
 
                 return movieDetail.when(
                   data: (movieDetail) {
