@@ -5,39 +5,58 @@ import 'package:flutter_movie_app/presentation/widgets/shimmer_loading_image.dar
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MovieDetailPage extends ConsumerWidget {
+class MovieDetailPage extends StatefulWidget {
   final Movie movie;
   final String categoryTitle;
-  const MovieDetailPage(
-      {required this.movie, required this.categoryTitle, super.key});
+
+  const MovieDetailPage({
+    required this.movie,
+    required this.categoryTitle,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final movieDetail = ref.watch(movieDetailViewModelProvider(movie.id));
+  _MovieDetailPageState createState() => _MovieDetailPageState();
+}
 
-    print("$categoryTitle - ${movie.id} // 받는 쪽");
+class _MovieDetailPageState extends State<MovieDetailPage> {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: movieDetail.when(
-          data: (movieDetail) {
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  ShimmerLoadingImage(
-                    heroTag: "$categoryTitle - ${movie.id}",
-                    imageUrl:
-                        "https://image.tmdb.org/t/p/w500${movie.posterPath}",
-                    width: double.infinity,
-                    height: 600,
-                  ),
-                  Text(movieDetail.title),
-                  Text(movieDetail.overview),
-                ],
-              ),
-            );
-          },
-          loading: () => CircularProgressIndicator(),
-          error: (error, stack) => Text("에러가 발생했습니다."),
+        child: Column(
+          children: [
+            ShimmerLoadingImage(
+              heroTag: "${widget.categoryTitle} - ${widget.movie.id}",
+              imageUrl:
+                  "https://image.tmdb.org/t/p/w500${widget.movie.posterPath}",
+              width: double.infinity,
+              height: 600,
+            ),
+            Consumer(
+              builder: (context, ref, child) {
+                final movieDetail =
+                    ref.watch(movieDetailViewModelProvider(widget.movie.id));
+
+                print("${widget.categoryTitle} - ${widget.movie.id} // 받는 쪽");
+
+                return movieDetail.when(
+                  data: (movieDetail) {
+                    return SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Text(movieDetail.title),
+                          Text(movieDetail.overview),
+                        ],
+                      ),
+                    );
+                  },
+                  loading: () => const CircularProgressIndicator(),
+                  error: (error, stack) => const Text("에러가 발생했습니다."),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
