@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie_app/presentation/pages/movie_detail/movie_detail_page.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:flutter_movie_app/presentation/widgets/shimmer_loading_image.dart';
 
 class MovieList extends StatelessWidget {
   final List movies;
@@ -37,6 +37,7 @@ class MovieList extends StatelessWidget {
                   imageUrl:
                       "http://image.tmdb.org/t/p/w500/${movie.posterPath}",
                   width: 120,
+                  height: 180,
                 ),
               ),
             );
@@ -60,6 +61,7 @@ class MovieList extends StatelessWidget {
                       imageUrl:
                           "http://image.tmdb.org/t/p/w500/${movie.posterPath}",
                       width: 120,
+                      height: 180,
                     ),
                     Positioned(
                         bottom: -20,
@@ -80,52 +82,5 @@ class MovieList extends StatelessWidget {
         },
       ),
     );
-  }
-}
-
-class ShimmerLoadingImage extends StatelessWidget {
-  final String imageUrl;
-  final double width;
-
-  const ShimmerLoadingImage({
-    required this.imageUrl,
-    required this.width,
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _precacheImage(context, imageUrl),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Image.network(
-              imageUrl,
-              width: width,
-              fit: BoxFit.cover,
-            ),
-          );
-        } else {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: Container(
-                width: width,
-                color: Colors.grey,
-              ),
-            ),
-          );
-        }
-      },
-    );
-  }
-
-  Future<void> _precacheImage(BuildContext context, String url) async {
-    final image = NetworkImage(url);
-    await precacheImage(image, context);
   }
 }

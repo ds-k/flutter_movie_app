@@ -3,6 +3,8 @@ import 'package:flutter_movie_app/presentation/pages/movie_detail/movie_detail_p
 import 'package:flutter_movie_app/presentation/pages/movie_list/movie_list_view_model.dart';
 import 'package:flutter_movie_app/presentation/pages/movie_list/widgets/category_title.dart';
 import 'package:flutter_movie_app/presentation/pages/movie_list/widgets/movie_list.dart';
+import 'package:flutter_movie_app/presentation/widgets/shimmer_loading_image.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MovieListPage extends ConsumerWidget {
@@ -63,13 +65,13 @@ class MovieListPage extends ConsumerWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.network(
-                              "https://image.tmdb.org/t/p/w500${movies[0].posterPath}",
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: ShimmerLoadingImage(
+                                imageUrl:
+                                    "https://image.tmdb.org/t/p/w500${movies[0].posterPath}",
+                                width: double.infinity,
+                                height: 480,
+                              )),
                         ),
                       ),
                     ],
