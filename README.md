@@ -6,7 +6,8 @@
 ---
 
 ## 📽️ 전체 시연 GIF
-![Uploading Simulator Screen Recording - iPhone 16 Pro - 2025-01-02 at 11.14.21.gif…]()
+![Simulator Screen Recording - iPhone 16 Pro - 2025-01-02 at 11 14 21](https://github.com/user-attachments/assets/f752be73-b556-47fa-a99f-a6d18b1e231b)
+
 
 
 ---
