@@ -1,5 +1,6 @@
 import 'package:flutter_movie_app/domain/entity/movie.dart';
 import 'package:flutter_movie_app/domain/entity/movie_detail.dart';
+import 'package:flutter_movie_app/domain/entity/movie_videos.dart';
 
 abstract interface class MovieRepository {
   Future<List<Movie>?> fetchNowPlayingMovies();
@@ -11,4 +12,6 @@ abstract interface class MovieRepository {
   Future<List<Movie>?> fetchUpcomingMovies();
 
   Future<MovieDetail?> fetchMovieDetail(int id);
+
+  Future<MovieVideos?> fetchMovieVideos(int id);
 }

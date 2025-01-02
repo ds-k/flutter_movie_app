@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_movie_app/data/data_source/movie_data_source.dart';
 import 'package:flutter_movie_app/data/dto/movie_detail_dto.dart';
 import 'package:flutter_movie_app/data/dto/movie_response_dto.dart';
+import 'package:flutter_movie_app/data/dto/movie_videos_dto.dart';
 
 class MovieDataSourceImpl implements MovieDataSource {
   final Dio _client;
@@ -97,6 +98,21 @@ class MovieDataSourceImpl implements MovieDataSource {
       );
       if (response.statusCode == 200) {
         return MovieResponseDto.fromJson(response.data);
+      }
+      return null;
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
+// https://api.themoviedb.org/3/movie/{movie_id}/videos
+  @override
+  Future<MovieVideosDto?> fetchMovieVideos(int id) async {
+    try {
+      final response = await _client.get("$id/videos");
+      if (response.statusCode == 200) {
+        return MovieVideosDto.fromJson(response.data);
       }
       return null;
     } catch (e) {

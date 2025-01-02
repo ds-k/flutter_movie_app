@@ -1,6 +1,7 @@
 import 'package:flutter_movie_app/data/data_source/movie_data_source.dart';
 import 'package:flutter_movie_app/domain/entity/movie.dart';
 import 'package:flutter_movie_app/domain/entity/movie_detail.dart';
+import 'package:flutter_movie_app/domain/entity/movie_videos.dart';
 import 'package:flutter_movie_app/domain/repository/movie_repository.dart';
 
 class MovieRepositoryImpl implements MovieRepository {
@@ -108,6 +109,32 @@ class MovieRepositoryImpl implements MovieRepository {
                   posterPath: movie.posterPath,
                 ))
             .toList();
+      }
+      return null;
+    } on Exception catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
+  @override
+  Future<MovieVideos?> fetchMovieVideos(int id) async {
+    try {
+      final result = await _movieDataSource.fetchMovieVideos(id);
+      {
+        if (result != null) {
+          return MovieVideos(
+            id: result.id,
+            results: result.results
+                .map((video) => Video(
+                      name: video.name,
+                      key: video.key,
+                      site: video.site,
+                      id: video.id,
+                    ))
+                .toList(),
+          );
+        }
       }
       return null;
     } on Exception catch (e) {
