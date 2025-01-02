@@ -102,8 +102,13 @@
 ### 문제: Hero 애니메이션 적용 중 비동기 데이터 로딩 문제 발생
 **원인:** ConsumerWidget을 사용해 비동기 데이터를 처리하면서 Hero 애니메이션이 중단됨.  
 **해결 방법:** ConsumerWidget 대신 StatefulWidget으로 전환하여 애니메이션을 정상적으로 구현.
+**해결 과정:** 
+- [시도1](https://github.com/ds-k/flutter_movie_app/commit/0b86936d0c344403a52f057b9c1e28b1917befb9)
+- [시도2](https://github.com/ds-k/flutter_movie_app/commit/aada763c8223f33385e209013169cd70c74f62f4)
+- [시도3](https://github.com/ds-k/flutter_movie_app/commit/aad5c216414de4df4f8d6febc66e4e32c4f44de2)
+- [시도4](https://github.com/ds-k/flutter_movie_app/commit/76ee8c45afda807a1bfec0f76124f1f1d4b4f8f8)
 
-더 자세한 내용은 [블로그 링크](#)에서 확인할 수 있습니다.
+더 자세한 내용은 [블로그 링크](https://velog.io/@daeseongkim/%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A1%9C-%EB%9E%9C%EB%8D%94%EB%A7%81%EB%90%98%EB%8A%94-%ED%99%94%EB%A9%B4ConsumerWidget%EA%B3%BC-hero-animation)에서 확인할 수 있습니다.
 
 ---
 
